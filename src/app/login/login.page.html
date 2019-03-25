@@ -1,0 +1,39 @@
+<ion-content padding color="secondary">
+  <ion-card  class="ion-login">
+    <ion-card-header color="tertiary">
+      <ion-card-title class="ion-login-header">Login</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="loginDetails" (submit)="login()">
+        <ion-item>
+          <!-- <ion-label floating>Contact </ion-label> -->
+          <ion-input type="text" placeholder="Your Name" formControlName="name"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <!-- <ion-label floating>Password </ion-label> -->
+            <ion-input type="password" placeholder="Password *" formControlName="pwd"></ion-input>
+        </ion-item>
+      
+        <ion-button expand="block"  type="submit" color="primary" [disabled]=!loginDetails.valid> Login</ion-button>
+          <div class="validation-errors" *ngIf="loginDetails.get('contact').touched && loginDetails.get('contact').invalid">
+            <ng-container *ngFor="let validation of validation_messages.name" >
+              <div class="error-message" *ngIf="loginDetails.get('contact').hasError(validation.type) && (loginDetails.get('contact').dirty || loginDetails.get('pwd').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </div> 
+      </form>
+      
+        <!-- <ion-buttons>
+            <ion-button expand="block" style="width: 50%" color="primary" class="fb-login"><ion-icon name="logo-facebook" color="light"></ion-icon></ion-button>
+            <ion-button expand="block" style="width: 50%" color="danger" class="Google-login"><ion-icon name="logo-googleplus" color="light"></ion-icon></ion-button>
+        </ion-buttons> -->
+
+        <ion-button expand="block" color="signUp" href="/register"> New User</ion-button>
+
+    
+      <a href="/">Forget Pwd?</a>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

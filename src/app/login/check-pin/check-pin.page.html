@@ -1,0 +1,27 @@
+
+<ion-content padding >
+  <ion-grid class="pin-display-grid">
+  <ion-row >
+      <ion-col class="pin-dispaly">
+          <ion-input class="pin-input-box" type="text" placeholder="Enter Your Pin..." [(ngModel)]="enteredPin" autofocus=true></ion-input>
+      </ion-col>
+      <ion-col class="pin-click-button" >
+          <ion-button 
+                color="tertiary" 
+               
+                [disabled]="enteredPin.length !== 5" 
+                (click)="validatePin()"
+          >
+
+          <ion-icon  slot="icon-only" name="arrow-round-forward"></ion-icon>
+          </ion-button>
+      </ion-col>    
+  </ion-row>
+  <ion-row>
+    <ion-col class="forget-link-col">
+      <a class="forget-link"
+       (click)="forgetPin()">Forget Pin?</a>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>

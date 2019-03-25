@@ -1,0 +1,40 @@
+<ion-header >
+  <ion-toolbar color="tertiary">
+      <ion-item >
+        <!-- <button ion-button icon-only (click)="onBackPressed()">
+          <ion-icon name="arrow-round-back" ></ion-icon>
+      </button> -->
+      <ion-back-button icon="arrow-back"></ion-back-button>
+      <ion-title style="margin-left: 25%">
+        List
+      </ion-title>
+      <ion-menu-button style="float:right"></ion-menu-button>
+      </ion-item>
+      
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding color="secondary">
+  <ion-list no-padding  *ngIf="isItemLoaded">
+    <ion-item *ngFor="let item of items; let i = index" color="dark">
+      
+      {{item.title}}
+      <div class="item-note">
+        {{item.note}}
+      </div>
+    </ion-item>
+  </ion-list>
+  
+  <ion-card *ngIf="!isItemLoaded">
+    <ion-card-content style="color:aliceblue">
+        Currently No item in list
+    </ion-card-content>
+  </ion-card>
+  
+  <!--
+    <div *ngIf="selectedItem" padding>
+      You navigated here from <b>{{selectedItem.title }}</b>
+    </div>
+  -->
+</ion-content>

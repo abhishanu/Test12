@@ -1,0 +1,67 @@
+<ion-header>
+    <ion-toolbar color="tertiary">
+      
+     <div class="pin-header">Create Pin</div>
+     <ion-buttons slot="end" (click)="skipPinGeneration()">
+        <ion-back-button text="Skip" icon="arrow-round-forward"></ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content padding>
+
+  <ion-input  placeholder="Please select 5 digit Pin.." type="text" [(ngModel)]="genratePin" class="pin-display-box"></ion-input>
+  
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+       <ion-button [disabled]="genratePin.length === 5" expand="block" (click)="pinClicked(1)" color="tertiary">1</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button  [disabled]="genratePin.length === 5" expand="block" (click)="pinClicked(2)" color="secondary" >2</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button  [disabled]="genratePin.length === 5" expand="block" (click)="pinClicked(3)" color="tertiary" >3</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+       <ion-button [disabled]="genratePin.length === 5" expand="block" (click)="pinClicked(4)" color="secondary" >4</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button [disabled]="genratePin.length === 5" expand="block" (click)="pinClicked(5)" color="tertiary" >5</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button [disabled]="genratePin.length === 5" expand="block" (click)="pinClicked(6)" color="secondary" >6</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+       <ion-button [disabled]="genratePin.length === 5" expand="block" (click)="pinClicked(7)" color="tertiary" >7</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button [disabled]="genratePin.length === 5" expand="block" (click)="pinClicked(8)" color="secondary" >8</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button [disabled]="genratePin.length === 5" expand="block" (click)="pinClicked(9)" color="tertiary" >9</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col>
+          <ion-button expand="block" color="secondary" (click)="clear()">Clear</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button [disabled]="genratePin.length === 5" expand="block" (click)="pinClicked(0)" color="tertiary">0</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button expand="block" (click)="backSpace()" color="secondary"><ion-icon name="backspace"></ion-icon>
+          </ion-button>
+        </ion-col>
+        
+
+      </ion-row>
+  </ion-grid>
+  <ion-button padding [disabled]="genratePin.length !== 5" expand="full" (click)="pinSave()" color="warning" >Create</ion-button>
+
+  <!-- <ion-button padding expand="full" (click)="skipPinGenration()" color="secondary" >Skip</ion-button> -->
+</ion-content>
