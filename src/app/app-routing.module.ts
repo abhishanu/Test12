@@ -35,7 +35,13 @@ const routes: Routes = [
   {
     path: 'check-pin',
     loadChildren: './login/check-pin/check-pin.module#CheckPinPageModule'
-  }
+  },
+  {
+    path: 'quiz',
+    loadChildren: './game/quiz/quiz.module#QuizPageModule',
+    canActivate: [AuthGuardService]
+  },
+  { path: 'forgetPwd', loadChildren: './login/forget-pwd/forget-pwd.module#ForgetPwdPageModule' }
 ];
 
 @NgModule({

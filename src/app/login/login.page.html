@@ -1,4 +1,13 @@
+<ion-header>
+    <ion-toolbar color="tertiary">
+      
+        <ion-title class="main-header"></ion-title>
+        <!-- Cricket Family -->
+    </ion-toolbar>
+  </ion-header>
+
 <ion-content padding color="secondary">
+  
   <ion-card  class="ion-login">
     <ion-card-header color="tertiary">
       <ion-card-title class="ion-login-header">Login</ion-card-title>
@@ -12,7 +21,7 @@
 
         <ion-item>
             <!-- <ion-label floating>Password </ion-label> -->
-            <ion-input type="password" placeholder="Password *" formControlName="pwd"></ion-input>
+            <ion-input type="password" placeholder="Password (min length - 5)" formControlName="pwd"></ion-input>
         </ion-item>
       
         <ion-button expand="block"  type="submit" color="primary" [disabled]=!loginDetails.valid> Login</ion-button>
@@ -33,7 +42,7 @@
         <ion-button expand="block" color="signUp" href="/register"> New User</ion-button>
 
     
-      <a href="/">Forget Pwd?</a>
+      <a href="/forgetPwd">Forget Pwd?</a>
     </ion-card-content>
   </ion-card>
 </ion-content>

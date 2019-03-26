@@ -4,6 +4,7 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { CommonService } from './Services/common/common.service';
+import { AuthGuardService } from './Services/auth/auth-gaurd.service';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +23,7 @@ export class AppComponent {
       icon: 'contact'
     },
     {
-      title: 'List',
+      title: 'Upcoming matches',
       url: '/list',
       icon: 'list'
     }
@@ -32,7 +33,8 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private commonService: CommonService
+    private commonService: CommonService,
+    private auth: AuthGuardService
   ) {
     this.initializeApp();
   }
@@ -43,5 +45,10 @@ export class AppComponent {
       this.splashScreen.hide();
       this.commonService.getPin();
     });
+  }
+
+  logout() {
+    this.auth.logout();
+    this.commonService.clearAppPin();
   }
 }

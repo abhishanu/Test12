@@ -16,6 +16,11 @@ export class AuthGuardService implements CanActivate {
         return true;
     }
 
+    logout() {
+        this.isUserLoggedIn = new BehaviorSubject(false);
+        this.router.navigate(['login']);
+    }
+
     // isPinCreated() {
     //   if ( this.commonService.getAppPin() !== undefined
     //       || this.commonService.getAppPin() !== null

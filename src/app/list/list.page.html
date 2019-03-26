@@ -1,18 +1,10 @@
 <ion-header >
-  <ion-toolbar color="tertiary">
-      <ion-item >
-        <!-- <button ion-button icon-only (click)="onBackPressed()">
-          <ion-icon name="arrow-round-back" ></ion-icon>
-      </button> -->
-      <ion-back-button icon="arrow-back"></ion-back-button>
-      <ion-title style="margin-left: 25%">
-        List
-      </ion-title>
-      <ion-menu-button style="float:right"></ion-menu-button>
-      </ion-item>
-      
-    
-  </ion-toolbar>
+    <ion-toolbar color="tertiary">
+        <ion-buttons slot="start" >
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+      <ion-title>Upcoming Matches</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content padding color="secondary">
@@ -31,10 +23,18 @@
         Currently No item in list
     </ion-card-content>
   </ion-card>
-  
-  <!--
-    <div *ngIf="selectedItem" padding>
-      You navigated here from <b>{{selectedItem.title }}</b>
-    </div>
-  -->
+ 
+<ion-tabs>
+    <ion-tab-bar slot="bottom" color="tertiary">
+      <ion-tab-button tab="home" href="/home">
+        <ion-icon name="home"></ion-icon>
+        <ion-label>Home</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="Profile" href="/profile">
+        <ion-icon name="contact"></ion-icon>
+        <ion-label>Profile</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+    
+  </ion-tabs>
 </ion-content>

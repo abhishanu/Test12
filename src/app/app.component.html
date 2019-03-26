@@ -1,6 +1,6 @@
 <ion-app>
   <ion-split-pane >
-    <ion-menu side="end">
+    <ion-menu side="start">
       <ion-header>
         <ion-toolbar color="tertiary">
           <ion-title>Menu</ion-title>
@@ -16,6 +16,14 @@
               </ion-label>
             </ion-item>
           </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false">
+          <ion-item color="dark" (click)="logout()">
+              <ion-icon slot="start" name="power"></ion-icon>
+              <ion-label>
+                  Logout
+              </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
         </ion-list>
       </ion-content>
     </ion-menu>

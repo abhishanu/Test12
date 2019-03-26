@@ -3,32 +3,21 @@
     <ion-buttons slot="start">
       <ion-back-button text="Back" icon="arrow-round-back" default-href="login"></ion-back-button>
     </ion-buttons>
-   <div class="signUp-header">Sign up</div>
+   <div class="signUp-header">Sign Up</div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
 <ion-list>
   <ion-item>
-    <ion-label>Name</ion-label>
-    <ion-input type="text"></ion-input>
+    <ion-input placeholder="Your Name" class="input-box" type="text"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label>Contact No</ion-label>
-    <ion-input type="text"></ion-input>
+    <ion-input placeholder="Password (min length - 5)" class="input-box" type="text"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label>Secondary Contact No</ion-label>
-    <ion-input type="text"></ion-input>
+    <ion-input placeholder="Confirm Password" class="input-box" type="text"></ion-input>
   </ion-item>
-  <ion-item>
-    <ion-label>Password</ion-label>
-    <ion-input type="text"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label>Confirm Password</ion-label>
-    <ion-input type="text"></ion-input>
-  </ion-item>
-  <ion-button color="success" expand="block">Create Account</ion-button>
+  <ion-button style="margin-top: 5%" color="success" expand="block">Create Account</ion-button>
 </ion-list>
 </ion-content>

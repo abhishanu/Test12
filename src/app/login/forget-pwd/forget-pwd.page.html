@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-title class="main-header"><!-- Cricket Family --></ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-card>
+        <ion-card-header color="tertiary">
+            <ion-card-title class="forgetPwd-header">Forget Password</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+              <ion-item>
+                  <ion-input type="text" placeholder="Id: (your name here)" [(ngModel)]="id"></ion-input>
+              </ion-item>
+              <ion-item *ngIf="id.length >= 3" >
+                  <ion-input type="password" placeholder="New Password(Min Length of:- 5)" [(ngModel)]="pwd"></ion-input>
+              </ion-item>
+              <ion-button expand="block" color="warning" [disabled]="pwd.length <= 5" (click)="changePwd()">Submit</ion-button>
+          </ion-card-content>
+    </ion-card>
+</ion-content>
+

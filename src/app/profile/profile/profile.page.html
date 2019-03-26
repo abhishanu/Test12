@@ -1,15 +1,31 @@
 <ion-header >
   <ion-toolbar color="tertiary">
-      <ion-buttons slot="end" >
+      <ion-buttons slot="start" >
           <ion-menu-button></ion-menu-button>
       </ion-buttons>
+      <ion-buttons slot="end" style="margin-right: 4%">
+          <ion-icon slot="end" (click)="presentAlert()"  name="power" ></ion-icon>
+      </ion-buttons>
     <ion-title>Profile</ion-title>
+    
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding color="secondary">
-Test
-
+  <ion-card style="color: whitesmoke">
+    <ion-card-header>
+      <ion-card-title>Welcome: {{commonService.Userlogin.name.toUpperCase}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        Current Rank:
+      </ion-item>
+      <ion-item>
+          Best Rank:
+        </ion-item>
+    </ion-card-content>
+  </ion-card>
+   
 <ion-tabs>
   <ion-tab-bar slot="bottom" color="tertiary">
     <ion-tab-button tab="home" href="/home">
@@ -18,7 +34,7 @@ Test
     </ion-tab-button>
     <ion-tab-button tab="list" href="/list">
       <ion-icon name="list"></ion-icon>
-      <ion-label>List</ion-label>
+      <ion-label>Matches</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
   

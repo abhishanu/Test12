@@ -14,8 +14,6 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class LoginPage implements OnInit {
   loginDetails: FormGroup;
-  Userlogin = {name: '', pwd: ''};
-
   validation_messages = {
     'name': [
     { type: 'required', message: 'Please enter your name.'}
@@ -52,9 +50,9 @@ export class LoginPage implements OnInit {
 
   login() {
     if (this.loginDetails.valid) {
-    this.Userlogin.name = this.loginDetails.get('name').value;
+    this.commonService.Userlogin.name = this.loginDetails.get('name').value;
     this.auth.isUserLoggedIn = new BehaviorSubject(true);
-      this.presentAlert('Log in successfully for:' + this.Userlogin.name);
+      this.presentAlert('Log in successfully for:' + this.commonService.Userlogin.name);
       this.commonService.clearAppPin();
     } else {
       this.presentAlert('Invalid');

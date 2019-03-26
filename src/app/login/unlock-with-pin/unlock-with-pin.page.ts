@@ -35,7 +35,7 @@ export class UnlockWithPinPage implements OnInit {
   }
 
   skipPinGeneration() {
-    this.navigate.navigateForward('/list');
+    this.navigate.navigateForward('/home');
   }
 
   async presentAlert(msg: string) {

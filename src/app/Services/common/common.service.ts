@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class CommonService {
   private items: Array<{ title: string; note: string}> = [];
-
+  Userlogin = {name: '', pwd: ''};
   private appPin: String;
   constructor(private storage: Storage,
               private alertCtrl: AlertController,
