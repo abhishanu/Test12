@@ -10,7 +10,7 @@
 
 <ion-content padding>
 
-  <ion-input  placeholder="Please select 5 digit Pin.." type="text" [(ngModel)]="genratePin" class="pin-display-box"></ion-input>
+  <ion-input  placeholder="Please select 5 digit Pin.." type="text" [ngModel]="genratePin" class="pin-display-box"></ion-input>
   
   <ion-grid>
     <ion-row>
@@ -61,7 +61,7 @@
 
       </ion-row>
   </ion-grid>
-  <ion-button padding [disabled]="genratePin.length !== 5" expand="full" (click)="pinSave()" color="warning" >Create</ion-button>
+  <ion-button padding [disabled]="genratePin.length !== 5" expand="block" (click)="pinSave()" color="warning" >Create</ion-button>
 
   <!-- <ion-button padding expand="full" (click)="skipPinGenration()" color="secondary" >Skip</ion-button> -->
 </ion-content>

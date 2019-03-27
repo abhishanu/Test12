@@ -26,6 +26,11 @@ export class AppComponent {
       title: 'Upcoming matches',
       url: '/list',
       icon: 'list'
+    },
+    {
+      title: 'Game Quizs',
+      url: '/quiz',
+      icon: 'ios-basketball'
     }
   ];
 

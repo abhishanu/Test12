@@ -1,3 +1,6 @@
+
+import { GameDesc } from './../../utility/commonUtil';
+
 import { AuthGuardService } from './../auth/auth-gaurd.service';
 import { Injectable } from '@angular/core';
 
@@ -8,12 +11,14 @@ import { LoadingController, NavController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class CommonService {
   private items: Array<{ title: string; note: string}> = [];
   Userlogin = {name: '', pwd: ''};
+  private gamesList: Array<GameDesc> = [];
   private appPin: String;
   constructor(private storage: Storage,
               private alertCtrl: AlertController,
@@ -28,6 +33,19 @@ export class CommonService {
       title: titleName,
       note: noteValue
     });
+  }
+
+  public getAllGameList (): Array<GameDesc> {
+    return this.gamesList;
+  }
+
+  public addGameToList(game: GameDesc) {
+    this.gamesList.push(game);
+  }
+
+  addTest() {
+    const game: GameDesc = {gameTitle: 'Arrange your team', desc: 'Choose your team rankings..', id: 1} ;
+    this.addGameToList(game);
   }
 
   isPinExists() {
@@ -85,7 +103,7 @@ export class CommonService {
   async presentLoadingWithOptions() {
     const loading = await this.loadingController.create({
       spinner: null,
-      duration: 5000,
+      duration: 2000,
       message: 'Please wait...',
       translucent: true,
       cssClass: 'custom-class custom-loading'
@@ -103,6 +121,11 @@ export class CommonService {
       this.presentAlert('Log Out Failed.');
     }
     );
+  }
+
+  public onBackPressed() {
+    console.log('Back Button Pressed');
+    this.navigate.goBack(true);
   }
 
 }

@@ -23,9 +23,4 @@ export class ListPage implements OnInit {
         this.isItemLoaded = true;
       }
   }
-
-  public onBackPressed() {
-    console.log('Back Button Pressed');
-    this.nav.goBack(true);
-  }
 }

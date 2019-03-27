@@ -38,10 +38,12 @@ const routes: Routes = [
   },
   {
     path: 'quiz',
-    loadChildren: './game/quiz/quiz.module#QuizPageModule',
-    canActivate: [AuthGuardService]
+    loadChildren: './game/quiz/quiz.module#QuizPageModule'
   },
-  { path: 'forgetPwd', loadChildren: './login/forget-pwd/forget-pwd.module#ForgetPwdPageModule' }
+  {
+    path: 'forgetPwd',
+    loadChildren: './login/forget-pwd/forget-pwd.module#ForgetPwdPageModule'
+  }
 ];
 
 @NgModule({
