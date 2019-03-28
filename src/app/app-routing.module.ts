@@ -43,6 +43,10 @@ const routes: Routes = [
   {
     path: 'forgetPwd',
     loadChildren: './login/forget-pwd/forget-pwd.module#ForgetPwdPageModule'
+  },
+  {
+    path: 'teamRank',
+    loadChildren: './game/team-rank/team-rank.module#TeamRankPageModule'
   }
 ];
 

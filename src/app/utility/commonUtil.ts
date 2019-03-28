@@ -3,3 +3,9 @@ export interface GameDesc {
     desc: string;
     id: any;
 }
+
+export interface TeamDesc {
+    teamName: String;
+    flag: any;
+    id: any;
+}

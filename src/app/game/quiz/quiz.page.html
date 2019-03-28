@@ -10,18 +10,21 @@
 
 <ion-content padding >
     <ion-list no-padding  *ngIf="_commonService.getAllGameList().length !== 0" lines="none">
-        <ion-item *ngFor="let game of games; let i = index" >
-          <ion-card class="display-games" (click)="openGame(game.id)">
-            <ion-card-header>
-              <ion-card-title class="game-title-class" style="color:whitesmoke;">{{game.gameTitle}}</ion-card-title>
-            </ion-card-header>
-          </ion-card>
-        </ion-item>
-      </ion-list>
+    <ion-reorder-group disabled="false" (ionItemReorder)="move($event)">
+        <ion-item *ngFor="let game of games; let i = index"  [ngClass]="{'even': i%2 === 0, 'odd': i%2 !== 0, 'display-games': true}">
+            
+              <ion-label class="display-game-name" (click)="openGame(game.id)">
+                    {{game.gameTitle}}
+              </ion-label>
+              <ion-reorder slot="end"></ion-reorder>  
+          </ion-item>
+    </ion-reorder-group>
+    </ion-list>
       
       <ion-card *ngIf="_commonService.getAllGameList().length === 0" color="secondary">
         <ion-card-content style="color:aliceblue">
             Currently there is no item(s).
         </ion-card-content>
       </ion-card>
+      
 </ion-content>

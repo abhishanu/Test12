@@ -1,5 +1,5 @@
 
-import { GameDesc } from './../../utility/commonUtil';
+import { GameDesc, TeamDesc } from './../../utility/commonUtil';
 
 import { AuthGuardService } from './../auth/auth-gaurd.service';
 import { Injectable } from '@angular/core';
@@ -18,6 +18,16 @@ import { Router } from '@angular/router';
 export class CommonService {
   private items: Array<{ title: string; note: string}> = [];
   Userlogin = {name: '', pwd: ''};
+  private teamNameList: Array<TeamDesc> = [
+                                            {teamName: 'CSK', flag: '', id: 1},
+                                            {teamName: 'RCB', flag: '', id: 2},
+                                            {teamName: 'DC', flag: '', id: 3},
+                                            {teamName: 'MI', flag: '', id: 4},
+                                            {teamName: 'XIPU', flag: '', id: 5},
+                                            {teamName: 'RR', flag: '', id: 6},
+                                            {teamName: 'KKR', flag: '', id: 7},
+                                            {teamName: 'SRH', flag: '', id: 8}
+                                          ];
   private gamesList: Array<GameDesc> = [];
   private appPin: String;
   constructor(private storage: Storage,
@@ -45,7 +55,9 @@ export class CommonService {
 
   addTest() {
     const game: GameDesc = {gameTitle: 'Arrange your team', desc: 'Choose your team rankings..', id: 1} ;
+    const game2: GameDesc = {gameTitle: 'Arrange your team2', desc: 'Choose your team rankings2..', id: 2} ;
     this.addGameToList(game);
+    this.addGameToList(game2);
   }
 
   isPinExists() {
