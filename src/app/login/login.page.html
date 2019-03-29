@@ -25,7 +25,7 @@
         </ion-item>
       
         <ion-button expand="block"  type="submit" color="primary" [disabled]=!loginDetails.valid> Login</ion-button>
-          <div class="validation-errors" *ngIf="loginDetails.get('contact').touched && loginDetails.get('contact').invalid">
+          <div class="validation-errors" *ngIf="loginDetails.get('contact').invalid">
             <ng-container *ngFor="let validation of validation_messages.name" >
               <div class="error-message" *ngIf="loginDetails.get('contact').hasError(validation.type) && (loginDetails.get('contact').dirty || loginDetails.get('pwd').touched)">
                 {{ validation.message }}

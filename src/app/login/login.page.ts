@@ -1,4 +1,3 @@
-import { PhoneValidator } from './../phone.validator';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { AlertController, NavController } from '@ionic/angular';
@@ -26,7 +25,6 @@ export class LoginPage implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private alertCtrl: AlertController,
-              private navigate: NavController,
               private commonService: CommonService,
               private router: Router,
               private auth: AuthGuardService)  {
@@ -51,7 +49,7 @@ export class LoginPage implements OnInit {
   login() {
     if (this.loginDetails.valid) {
     this.commonService.Userlogin.name = this.loginDetails.get('name').value;
-    this.auth.isUserLoggedIn = new BehaviorSubject(true);
+    this.auth.isUserLoggedIn.next(true);
       this.presentAlert('Log in successfully for:' + this.commonService.Userlogin.name);
       this.commonService.clearAppPin();
     } else {
@@ -79,7 +77,8 @@ export class LoginPage implements OnInit {
   }
 
   goToCreatePinScreen() {
-    this.navigate.navigateForward('/unlockWithPin');
+    this.router.navigateByUrl('/unlockWithPin');
+   // this.navigate.navigateForward('/unlockWithPin');
   }
 
 }

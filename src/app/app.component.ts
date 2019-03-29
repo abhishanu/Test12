@@ -29,7 +29,7 @@ export class AppComponent {
     },
     {
       title: 'Game Quizs',
-      url: '/quiz',
+      url: '/games',
       icon: 'ios-basketball'
     }
   ];
@@ -48,7 +48,7 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      this.commonService.getPin();
+      // this.commonService.getPin();
     });
   }
 

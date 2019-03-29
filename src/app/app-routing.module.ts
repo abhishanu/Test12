@@ -47,6 +47,10 @@ const routes: Routes = [
   {
     path: 'teamRank',
     loadChildren: './game/team-rank/team-rank.module#TeamRankPageModule'
+  },
+  {
+    path: 'games',
+    loadChildren: './game/games/games.module#GamesPageModule'
   }
 ];
 

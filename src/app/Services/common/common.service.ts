@@ -18,18 +18,26 @@ import { Router } from '@angular/router';
 export class CommonService {
   private items: Array<{ title: string; note: string}> = [];
   Userlogin = {name: '', pwd: ''};
-  private teamNameList: Array<TeamDesc> = [
-                                            {teamName: 'CSK', flag: '', id: 1},
-                                            {teamName: 'RCB', flag: '', id: 2},
-                                            {teamName: 'DC', flag: '', id: 3},
-                                            {teamName: 'MI', flag: '', id: 4},
-                                            {teamName: 'XIPU', flag: '', id: 5},
-                                            {teamName: 'RR', flag: '', id: 6},
-                                            {teamName: 'KKR', flag: '', id: 7},
-                                            {teamName: 'SRH', flag: '', id: 8}
-                                          ];
   private gamesList: Array<GameDesc> = [];
   private appPin: String;
+  private _teamNameList: Array<TeamDesc> = [
+    { teamName: 'CSK', flag: '', id: 1 },
+    { teamName: 'RCB', flag: '', id: 2 },
+    { teamName: 'DC', flag: '', id: 3 },
+    { teamName: 'MI', flag: '', id: 4 },
+    { teamName: 'XIPU', flag: '', id: 5 },
+    { teamName: 'RR', flag: '', id: 6 },
+    { teamName: 'KKR', flag: '', id: 7 },
+    { teamName: 'SRH', flag: '', id: 8 }
+  ];
+  public getTeamNameList(): Array<TeamDesc> {
+    return this._teamNameList;
+  }
+
+  public setTeamList(teamListNew: Array<TeamDesc>) {
+    this._teamNameList = teamListNew;
+  }
+
   constructor(private storage: Storage,
               private alertCtrl: AlertController,
               private loadingController: LoadingController,
@@ -54,8 +62,8 @@ export class CommonService {
   }
 
   addTest() {
-    const game: GameDesc = {gameTitle: 'Arrange your team', desc: 'Choose your team rankings..', id: 1} ;
-    const game2: GameDesc = {gameTitle: 'Arrange your team2', desc: 'Choose your team rankings2..', id: 2} ;
+    const game: GameDesc = {gameTitle: 'Arrange your team', desc: 'Choose your team rankings..', id: 1, url: '/teamRank'} ;
+    const game2: GameDesc = {gameTitle: 'Sixes Compition', desc: 'Choose a player who will hit max sixes..', id: 2, url: '/quiz'} ;
     this.addGameToList(game);
     this.addGameToList(game2);
   }

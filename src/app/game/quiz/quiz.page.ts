@@ -16,12 +16,10 @@ export class QuizPage implements OnInit {
              ) { }
 
   ngOnInit() {
-    this._commonService.addTest();
     this.games = this._commonService.getAllGameList();
   }
 
   openGame(id: any) {
-    // this._commonService.presentAlert('Game Clicked:' + this.games[id].gameTitle);
     this._commonService.presentLoadingWithOptions();
     this.navigate.navigateForward('/teamRank');
   }
