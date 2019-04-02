@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-back-button (click)="_commonService.onBackPressed('/home')" text="Back" icon="arrow-round-back" default-href="login"></ion-back-button>
+    </ion-buttons>
+   <div class="quiz-header">Let's PLAY</div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list *ngFor="let game of allGamesList;  let i = index">
+    <ion-card (click)="openGame(i)" color="secondary">
+      <ion-card-header>
+        <ion-card-title>{{game.gameTitle}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>{{game.desc}}</ion-card-content>
+    </ion-card>    
+  </ion-list>
+</ion-content>

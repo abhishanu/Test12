@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-back-button (click)="_commonService.onBackPressed('/games')" text="Back" icon="arrow-round-back" default-href="login"></ion-back-button>
+    </ion-buttons>
+   <div class="rank-header">Arrange Team Rank</div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding >
+  <ion-list no-padding  *ngIf="teamList.length !== 0" lines="none">
+  <ion-reorder-group disabled="false" (ionItemReorder)="moveTeamRank($event)">
+      <ion-item *ngFor="let team of teamList; let i = index"  [ngClass]="{'even': i%2 === 0, 'odd': i%2 !== 0, 'display-games': true}">
+          
+            <ion-label class="display-game-name">
+                  {{team.teamName}}
+            </ion-label>
+            <ion-reorder slot="end"></ion-reorder>  
+        </ion-item>
+  </ion-reorder-group>
+  </ion-list>
+  <ion-button expand="block"  type="submit" color="primary" (click)="submit()">Submit</ion-button> 
+</ion-content>

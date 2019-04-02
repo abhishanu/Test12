@@ -7,24 +7,22 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content padding color="secondary">
-  <ion-list no-padding  *ngIf="isItemLoaded">
-    <ion-item *ngFor="let item of items; let i = index" color="dark">
-      
-      {{item.title}}
-      <div class="item-note">
-        {{item.note}}
-      </div>
-    </ion-item>
+<ion-content padding>
+  <ion-list *ngFor="let match of showMatchName; let i = index" lines="none">
+      <ion-card (click)="openMatch(i)" color="secondary">
+        <ion-card-header style="text-align: center">
+          <ion-card-title style="color:whitesmoke">{{match.name}}</ion-card-title>
+        </ion-card-header>
+      </ion-card>
   </ion-list>
-  
+
   <ion-card *ngIf="!isItemLoaded">
     <ion-card-content style="color:aliceblue">
         Currently No matches to show
     </ion-card-content>
   </ion-card>
  
-<ion-tabs>
+<!-- <ion-tabs>
     <ion-tab-bar slot="bottom" color="tertiary">
       <ion-tab-button tab="home" href="/home">
         <ion-icon name="home"></ion-icon>
@@ -36,5 +34,5 @@
       </ion-tab-button>
     </ion-tab-bar>
     
-  </ion-tabs>
+  </ion-tabs> -->
 </ion-content>

@@ -1,11 +1,9 @@
-import { PhoneValidator } from './../phone.validator';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { AlertController, NavController } from '@ionic/angular';
 import { CommonService } from '../Services/common/common.service';
 import { Router } from '@angular/router';
 import { AuthGuardService } from '../Services/auth/auth-gaurd.service';
-import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +11,8 @@ import { BehaviorSubject } from 'rxjs';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  showPwd: Boolean = false;
+  pwdType: String = 'password';
   loginDetails: FormGroup;
   validation_messages = {
     'name': [
@@ -26,10 +26,10 @@ export class LoginPage implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private alertCtrl: AlertController,
-              private navigate: NavController,
               private commonService: CommonService,
               private router: Router,
-              private auth: AuthGuardService)  {
+              private auth: AuthGuardService
+              )  {
   }
 
   ngOnInit() {
@@ -50,17 +50,30 @@ export class LoginPage implements OnInit {
 
   login() {
     if (this.loginDetails.valid) {
-    this.commonService.Userlogin.name = this.loginDetails.get('name').value;
-    this.auth.isUserLoggedIn = new BehaviorSubject(true);
-      this.presentAlert('Log in successfully for:' + this.commonService.Userlogin.name);
+        const name = this.loginDetails.get('name').value;
+        const pwd = this.loginDetails.get('pwd').value;
+        this.commonService.logIn(name, pwd).then(res => {
+            const isLoggedIn: any = res.valueOf();
+            if (isLoggedIn['state'] === true) {
+              this.commonService.Userlogin.name = name;
+              this.commonService.userId = isLoggedIn.responseMap.userId;
+              this.presentAlert('Log in successfully for:' + name, true);
+              this.auth.isUserLoggedIn.next(true);
+            } else {
+              this.presentAlert('Login Failed..', false);
+            }
+          }).catch(
+            err => {
+              this.presentAlert('Network Issue.Please try later....', false);
+            });
       this.commonService.clearAppPin();
     } else {
-      this.presentAlert('Invalid');
+      this.presentAlert('Invalid', false);
       this.commonService.clearAppPin();
     }
   }
 
-  async presentAlert(msg: string) {
+  async presentAlert(msg: string, state: boolean) {
     const alert = await this.alertCtrl.create({
       header: 'Alert',
       cssClass: 'custom-alert-box',
@@ -69,7 +82,11 @@ export class LoginPage implements OnInit {
           text: 'Ok',
           cssClass: 'alert-Buttons',
           handler: () => {
-            this.goToCreatePinScreen();
+            if (state) {
+              this.router.navigateByUrl('/unlockWithPin');
+            } else {
+              this.router.navigateByUrl('/login');
+            }
           }
         }
       ]
@@ -78,8 +95,14 @@ export class LoginPage implements OnInit {
     await alert.present();
   }
 
-  goToCreatePinScreen() {
-    this.navigate.navigateForward('/unlockWithPin');
+  changePwdView() {
+    this.showPwd = ! this.showPwd;
+    if (this.showPwd) {
+      this.pwdType = 'text';
+    } else {
+      this.pwdType = 'password';
+    }
+
   }
 
 }

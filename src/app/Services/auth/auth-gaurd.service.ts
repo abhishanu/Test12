@@ -10,15 +10,15 @@ export class AuthGuardService implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot): boolean {
         if (!this.isUserLoggedIn.getValue()) {
-            this.router.navigate(['login']);
+            this.router.navigateByUrl('login');
             return false;
         }
         return true;
     }
 
     logout() {
-        this.isUserLoggedIn = new BehaviorSubject(false);
-        this.router.navigate(['login']);
+        this.isUserLoggedIn.next(false);
+        this.router.navigateByUrl('login');
     }
 
     // isPinCreated() {

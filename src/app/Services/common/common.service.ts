@@ -1,5 +1,6 @@
+import { async } from '@angular/core/testing';
 
-import { GameDesc } from './../../utility/commonUtil';
+import { GameDesc, TeamDesc } from './../../utility/commonUtil';
 
 import { AuthGuardService } from './../auth/auth-gaurd.service';
 import { Injectable } from '@angular/core';
@@ -10,6 +11,7 @@ import { LoadingController, NavController } from '@ionic/angular';
 
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { RequestService } from '../request/request.service';
 
 
 @Injectable({
@@ -17,15 +19,40 @@ import { Router } from '@angular/router';
 })
 export class CommonService {
   private items: Array<{ title: string; note: string}> = [];
+  private _userId: any = null;
+  public get userId(): any {
+    return this._userId;
+  }
+  public set userId(value: any) {
+    this._userId = value;
+  }
   Userlogin = {name: '', pwd: ''};
   private gamesList: Array<GameDesc> = [];
   private appPin: String;
+  private _teamNameList: Array<TeamDesc> = [
+    { teamName: 'CSK', flag: '', id: 1 },
+    { teamName: 'RCB', flag: '', id: 2 },
+    { teamName: 'DC', flag: '', id: 3 },
+    { teamName: 'MI', flag: '', id: 4 },
+    { teamName: 'XIPU', flag: '', id: 5 },
+    { teamName: 'RR', flag: '', id: 6 },
+    { teamName: 'KKR', flag: '', id: 7 },
+    { teamName: 'SRH', flag: '', id: 8 }
+  ];
+  public getTeamNameList(): Array<TeamDesc> {
+    return this._teamNameList;
+  }
+
+  public setTeamList(teamListNew: Array<TeamDesc>) {
+    this._teamNameList = teamListNew;
+  }
+
   constructor(private storage: Storage,
               private alertCtrl: AlertController,
               private loadingController: LoadingController,
               private auth: AuthGuardService,
               private router: Router,
-              private navigate: NavController
+              private req: RequestService
               ) { }
 
   public addItemToList(titleName: string , noteValue: string) {
@@ -44,8 +71,10 @@ export class CommonService {
   }
 
   addTest() {
-    const game: GameDesc = {gameTitle: 'Arrange your team', desc: 'Choose your team rankings..', id: 1} ;
+    const game: GameDesc = {gameTitle: 'Arrange your team', desc: 'Choose your team rankings..', id: 1, url: '/teamRank'} ;
+    const game2: GameDesc = {gameTitle: 'Sixes Compition', desc: 'Choose a player who will hit max sixes..', id: 2, url: '/quiz'} ;
     this.addGameToList(game);
+    this.addGameToList(game2);
   }
 
   isPinExists() {
@@ -60,11 +89,18 @@ export class CommonService {
   }
 
   public savePin(pin: String) {
-    this.appPin = pin;
-    this.storage.set('pin', pin);
-   // this.router.navigate(['profile']);
-    this.router.navigateByUrl('/profile');
-    // this.navigate.navigateRoot('/profile');
+    if (this.userId !== null) {
+      const requestBody = {'User_Id': this.userId, 'Pin': pin };
+      this.req.post('savePin', requestBody).toPromise().then(res => {
+        this.appPin = pin;
+        this.storage.set('pin', pin);
+        this.router.navigateByUrl('/list');
+      }).catch(err => {
+        this.router.navigateByUrl('/login');
+      });
+    } else {
+      this.router.navigateByUrl('/login');
+    }
   }
 
   public getPin() {
@@ -123,9 +159,21 @@ export class CommonService {
     );
   }
 
-  public onBackPressed() {
+  public onBackPressed(page: any) {
     console.log('Back Button Pressed');
-    this.navigate.goBack(true);
+    this.router.navigateByUrl(page);
   }
+
+  public logIn(user: any, pwd: any) {
+    const request = {
+      'name': user, 'pwd': pwd
+    };
+    return this.req.login(request);
+  }
+
+  public getPlayersList(id: any) {
+    return this.req.get('getPlayerList/' + id);
+  }
+
 
 }

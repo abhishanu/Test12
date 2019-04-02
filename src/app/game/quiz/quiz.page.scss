@@ -1,7 +1,15 @@
 .display-games{
     width: 100%;
     margin: 0;
-    background-color: #1db6bdba;
+    margin-top: 3%
+}
+
+.odd{
+    background-color: #1a858aba;
+}
+
+.even{
+    background-color: #425f9e; 
 }
 
 .quiz-header{
@@ -13,3 +21,8 @@
     color: white;
     text-align: center;
 }
+
+.display-game-name {
+    color: whitesmoke;
+    text-align: center;
+ }

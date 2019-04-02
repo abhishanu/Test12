@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonService } from '../Services/common/common.service';
+import { RequestService } from '../Services/request/request.service';
 
 @Component({
   selector: 'app-home',
@@ -7,21 +8,32 @@ import { CommonService } from '../Services/common/common.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  constructor(private dataService: CommonService) {}
-
-  public title: string;
-  public note: string;
-
-  public submitNote() {
-    console.log('Title: ' + this.title);
-    console.log('Note: ' + this.note);
-
-    this.dataService.addItemToList(this.title, this.note);
-    this.title = '';
-    this.note = '';
-  }
+  upcomingAllMatches: Array<any> = [];
+  showMatchName: Array<String> = [];
+  constructor(
+              private dataService: CommonService,
+              private req: RequestService) {
+                this.upcomingAllMatches = this.req.upcomingMatches;
+                this.getMatches();
+              }
 
   ionViewWillEnter() {
     console.log('HomePage Enter');
+  }
+
+  getMatches(){
+    this.upcomingAllMatches.forEach(element => {
+      let team1:String='';
+      element['team-1'].split(' ')
+                          .forEach(name=> {
+                            team1 += name.slice(0,1)+' ';
+                          });
+      let team2:String='';
+      element['team-2'].split(' ')
+                        .forEach(name=> {
+                          team2 += name.slice(0,1)+' ';
+                        })
+      this.showMatchName.push(team1.toUpperCase() + 'Vs ' + team2.toUpperCase());
+    });
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonService } from 'src/app/Services/common/common.service';
 import { AlertController, NavController } from '@ionic/angular';
 import { AuthGuardService } from 'src/app/Services/auth/auth-gaurd.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-check-pin',
@@ -13,9 +14,9 @@ export class CheckPinPage implements OnInit {
 
   constructor(
               private alertCtrl: AlertController,
-              private navigate: NavController,
               private commonService: CommonService,
-              private auth: AuthGuardService
+              private auth: AuthGuardService,
+              private router: Router
              ) { }
 
   ngOnInit() {
@@ -27,7 +28,8 @@ export class CheckPinPage implements OnInit {
   validatePin() {
     this.auth.isUserLoggedIn.next(true);
     if (this.enteredPin === this.commonService.getAppPin()) {
-       this.navigate.navigateBack('home');
+       this.router.navigateByUrl('/home');
+      // this.navigate.navigateBack('home');
        this.auth.isUserLoggedIn.next(true);
     } else {
       this.commonService.presentAlert('You Entered the wrong pin.');
@@ -37,7 +39,8 @@ export class CheckPinPage implements OnInit {
   forgetPin() {
     setTimeout(() => {
       this.commonService.logOut();
-      this.navigate.navigateForward('login');
+      this.router.navigateByUrl('/login');
+      // this.navigate.navigateForward('login');
     }, 1000);
   }
 

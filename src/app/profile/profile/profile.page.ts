@@ -1,7 +1,8 @@
 import { CommonService } from './../../Services/common/common.service';
 import { AuthGuardService } from 'src/app/Services/auth/auth-gaurd.service';
 import { Component, OnInit } from '@angular/core';
-import { NavController, AlertController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -11,7 +12,7 @@ import { NavController, AlertController } from '@ionic/angular';
 export class ProfilePage implements OnInit {
 
   constructor(
-              private nav: NavController,
+              private router: Router,
               private auth: AuthGuardService,
               private alertCtrl: AlertController,
               public commonService: CommonService
@@ -21,7 +22,7 @@ export class ProfilePage implements OnInit {
   }
 
   onBackPressed() {
-    this.nav.navigateBack('home');
+    this.router.navigateByUrl('/home');
   }
 
   logout() {

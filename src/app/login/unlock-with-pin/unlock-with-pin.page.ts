@@ -1,6 +1,7 @@
 import { CommonService } from '../../Services/common/common.service';
 import { Component, OnInit } from '@angular/core';
-import { AlertController, NavController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-unlock-with-pin',
@@ -9,7 +10,10 @@ import { AlertController, NavController } from '@ionic/angular';
 })
 export class UnlockWithPinPage implements OnInit {
   genratePin: String = '';
-  constructor(private alertCtrl: AlertController, private navigate: NavController, private commonService: CommonService) { }
+  constructor(
+              private alertCtrl: AlertController,
+              private router: Router,
+              private commonService: CommonService) { }
 
   ngOnInit() {
   }
@@ -30,12 +34,12 @@ export class UnlockWithPinPage implements OnInit {
     const checkPin = this.commonService.getAppPin();
 
     if (checkPin) {
-      this.navigate.navigateForward('/home');
+      this.router.navigateByUrl('/home');
     }
   }
 
   skipPinGeneration() {
-    this.navigate.navigateForward('/home');
+    this.router.navigateByUrl('/home');
   }
 
   async presentAlert(msg: string) {
@@ -74,7 +78,7 @@ export class UnlockWithPinPage implements OnInit {
   }
 
   skipPinGenration() {
-    this.navigate.navigateForward('/home');
+    this.router.navigateByUrl('/home');
   }
 
 }

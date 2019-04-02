@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { CommonService } from './Services/common/common.service';
 import { AuthGuardService } from './Services/auth/auth-gaurd.service';
+import { RequestService } from './Services/request/request.service';
 
 @Component({
   selector: 'app-root',
@@ -29,7 +30,7 @@ export class AppComponent {
     },
     {
       title: 'Game Quizs',
-      url: '/quiz',
+      url: '/games',
       icon: 'ios-basketball'
     }
   ];
@@ -39,16 +40,18 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private commonService: CommonService,
-    private auth: AuthGuardService
+    private auth: AuthGuardService,
+    private req: RequestService
   ) {
     this.initializeApp();
+    this.req.getAllUpcomingMatches();
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      this.commonService.getPin();
+      // this.commonService.getPin();
     });
   }
 
